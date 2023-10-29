@@ -1,10 +1,10 @@
 import React from "react";
+import Link from "next/link";
 import DeleteBlock from "./DeleteBlock";
 import PriorityDisplay from "./PriorityDisplay";
 import ProgressDisplay from "./ProgressDisplay";
 import StatusDisplay from "./StatusDisplay";
 import { Ticket } from "@/types";
-import { Timestamp } from "mongodb";
 
 type Props = {
   ticket: Ticket;
@@ -34,24 +34,25 @@ function TicketCard({ ticket }: Props) {
           <DeleteBlock id={ticket._id} />
         </div>
       </div>
-      <h4>{ticket.title}</h4>
-      <hr className="h-px border-0 bg-page mb-2" />
-      <p className="whitespace-pre-wrap">{ticket.description}</p>
-      <div className="flex-grow"></div>
-      <div className="flex mt-2">
-        <div className="flex flex-col">
-          <p className="text-xs my-1">
-            {" "}
-            {ticket.createdAt
-              ? formatTimestamp(ticket.createdAt)
-              : "Date not available"}
-          </p>
-          <ProgressDisplay progress={ticket.progress} />
+      <Link href={`/ticket-page/${ticket._id}`} style={{ display: "contents" }}>
+        <h4>{ticket.title}</h4>
+        <hr className="h-px border-0 bg-page mb-2" />
+        <p className="whitespace-pre-wrap">{ticket.description}</p>
+        <div className="flex-grow"></div>
+        <div className="flex mt-2">
+          <div className="flex flex-col">
+            <p className="text-xs my-1">
+              {ticket.createdAt
+                ? formatTimestamp(ticket.createdAt)
+                : "Date not available"}
+            </p>
+            <ProgressDisplay progress={ticket.progress} />
+          </div>
+          <div className="ml-auto flex items-end">
+            <StatusDisplay status={ticket.status} />
+          </div>
         </div>
-        <div className="ml-auto flex items-end">
-          <StatusDisplay status={ticket.status} />
-        </div>
-      </div>
+      </Link>
     </div>
   );
 }

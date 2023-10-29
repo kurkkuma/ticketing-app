@@ -2,8 +2,11 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Ticket } from "@/types";
 
-function TicketForm() {
+function TicketForm({ ticket }: { ticket: Ticket }) {
+  const EDITMODE = ticket._id === "new" ? false : true;
+
   const startingTicketData = {
     title: "",
     description: "",
@@ -12,6 +15,16 @@ function TicketForm() {
     status: "not started",
     category: "Hardware problem",
   };
+
+  if (EDITMODE) {
+    startingTicketData["title"] = ticket.title;
+    startingTicketData["description"] = ticket.description;
+    startingTicketData["priority"] = ticket.priority;
+    startingTicketData["progress"] = ticket.progress;
+    startingTicketData["status"] = ticket.status;
+    startingTicketData["category"] = ticket.category;
+  }
+
   const router = useRouter();
   const [formData, setFormData] = useState(startingTicketData);
 
@@ -25,16 +38,31 @@ function TicketForm() {
   };
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    const res = await fetch("/api/Tickets", {
-      method: "POST",
-      body: JSON.stringify({ formData }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
 
-    if (!res.ok) {
-      throw new Error("Failed to create Ticket");
+    if (EDITMODE) {
+      const res = await fetch(`/api/Tickets/${ticket._id}`, {
+        method: "PUT",
+        body: JSON.stringify({ formData }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to update Ticket");
+      }
+    } else {
+      const res = await fetch("/api/Tickets", {
+        method: "POST",
+        body: JSON.stringify({ formData }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to create Ticket");
+      }
     }
 
     router.refresh();
@@ -48,7 +76,7 @@ function TicketForm() {
         method="post"
         onSubmit={handleSubmit}
       >
-        <h3>Create your ticket</h3>
+        <h3>{EDITMODE ? "Update your ticket" : "Create your ticket"}</h3>
         <label>Title</label>
         <input
           onChange={handleChange}
@@ -155,7 +183,11 @@ function TicketForm() {
           <option value="done">Done</option>
         </select>
 
-        <input type="submit" className="btn" value="Create Ticket" />
+        <input
+          type="submit"
+          className="btn"
+          value={EDITMODE ? "Update ticket" : "Create ticket"}
+        />
       </form>
     </div>
   );
