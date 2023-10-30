@@ -1,22 +1,57 @@
-import { faTicket, faHome } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import React from "react";
+import Toggle from "./Toggle";
 
 function Navbar() {
   return (
-    <nav className="flex justify-between bg-nav p-4">
-      <div className="flex-items-center space-x-4">
+    <nav className="flex justify-between items-center bg-secondary p-4 pl-12">
+      <div className="flex items-center space-x-10">
         <Link href="/">
-          <FontAwesomeIcon icon={faHome} className="icon" />
+          <svg
+            className="swap-off fill-current w-6 h-6 text-neutral"
+            version="1.1"
+            id="Layer_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            width="122.88px"
+            height="122.566px"
+            viewBox="0 0 122.88 122.566"
+            enableBackground="new 0 0 122.88 122.566"
+            xmlSpace="preserve"
+          >
+            <g>
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M3.78,66.082h47.875c2.045,0,3.717,1.988,3.717,4.414v46.479 c0,2.43-1.671,4.416-3.717,4.416H3.78c-2.043,0-3.717-1.986-3.717-4.416V70.496C0.063,68.07,1.737,66.082,3.78,66.082L3.78,66.082z M71.224,0H119.1c2.046,0,3.717,1.986,3.717,4.415v46.479c0,2.429-1.671,4.413-3.717,4.413H71.224 c-2.045,0-3.714-1.984-3.714-4.413V4.415C67.51,1.986,69.179,0,71.224,0L71.224,0z M3.714,0h47.878 c2.045,0,3.717,1.986,3.717,4.415v46.479c0,2.429-1.671,4.413-3.717,4.413H3.714C1.671,55.307,0,53.323,0,50.894V4.415 C0,1.986,1.671,0,3.714,0L3.714,0z M71.287,67.26h47.876c2.043,0,3.717,1.986,3.717,4.416v46.479c0,2.426-1.674,4.412-3.717,4.412 H71.287c-2.045,0-3.717-1.986-3.717-4.412V71.676C67.57,69.246,69.242,67.26,71.287,67.26L71.287,67.26z"
+              />
+            </g>
+          </svg>
         </Link>
         <Link href="/ticket-page/new">
-          <FontAwesomeIcon icon={faTicket} className="icon" />
+          <svg
+            className="swap-off fill-current w-6 h-6 text-neutral"
+            version="1.1"
+            id="Layer_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            width="122.879px"
+            height="122.88px"
+            viewBox="0 0 122.879 122.88"
+            enableBackground="new 0 0 122.879 122.88"
+            xmlSpace="preserve"
+          >
+            <g>
+              <path d="M8.773,0h105.332c2.417,0,4.611,0.986,6.199,2.574c1.589,1.588,2.574,3.783,2.574,6.199v105.333 c0,2.416-0.985,4.61-2.574,6.199c-1.588,1.588-3.782,2.574-6.199,2.574H8.773c-2.416,0-4.611-0.986-6.199-2.574 C0.986,118.717,0,116.522,0,114.106V8.773c0-2.417,0.986-4.611,2.574-6.199S6.357,0,8.773,0L8.773,0z M57.876,30.852 c0-1.968,1.596-3.564,3.563-3.564c1.969,0,3.563,1.596,3.563,3.564v27.024l27.024,0c1.969,0,3.563,1.596,3.563,3.563 s-1.595,3.563-3.563,3.563H65.003v27.024c0,1.969-1.596,3.563-3.563,3.563s-3.563-1.595-3.563-3.563V65.003H30.852 c-1.968,0-3.563-1.595-3.563-3.563c0-1.968,1.596-3.563,3.563-3.563h27.024V30.852L57.876,30.852z M114.105,7.129H8.773 c-0.449,0-0.859,0.186-1.159,0.485c-0.3,0.3-0.486,0.71-0.486,1.159v105.333c0,0.448,0.186,0.859,0.486,1.159 c0.3,0.299,0.71,0.485,1.159,0.485h105.332c0.449,0,0.86-0.187,1.159-0.485c0.3-0.3,0.486-0.711,0.486-1.159V8.773 c0-0.449-0.187-0.859-0.486-1.159C114.966,7.315,114.555,7.129,114.105,7.129L114.105,7.129z" />
+            </g>
+          </svg>
         </Link>
       </div>
-      <div>
-        <p className="text-default-text">someemail@gamil.com</p>
-      </div>
+      <Toggle />
     </nav>
   );
 }

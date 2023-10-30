@@ -5,13 +5,13 @@ function StatusDisplay({ status }: { status: string }) {
     let color = "bg-slate-700";
     switch (status.toUpperCase()) {
       case "DONE":
-        color = "bg-green-200";
+        color = "bg-success";
         break;
       case "STARTED":
-        color = "bg-yellow-200";
+        color = "bg-warning";
         break;
       case "NOT STARTED":
-        color = "bg-red-200";
+        color = "bg-error";
         break;
     }
     return color;
@@ -19,7 +19,7 @@ function StatusDisplay({ status }: { status: string }) {
 
   return (
     <span
-      className={`inline-block uppercase rounded-full px-2 py-1 text-xs font-semibold text-gray-700 ${getColor(
+      className={`inline-block uppercase rounded px-2 py-1 text-xs font-semibold text-neutral ${getColor(
         status
       )}`}
     >

@@ -27,8 +27,8 @@ function TicketCard({ ticket }: Props) {
   };
 
   return (
-    <div className="flex flex-col bg-card hover:bg-card-hover rounded-md shadow-lg p-3 m-2">
-      <div className="flex mb-3">
+    <div className="flex flex-col bg-info rounded-md shadow-lg p-6 m-4 hover:scale-105 transition-transform duration-200 overflow-hidden">
+      <div className="flex mb-2">
         <PriorityDisplay priority={ticket.priority} />
         <div className="ml-auto">
           <DeleteBlock id={ticket._id} />
@@ -39,7 +39,7 @@ function TicketCard({ ticket }: Props) {
         <hr className="h-px border-0 bg-page mb-2" />
         <p className="whitespace-pre-wrap">{ticket.description}</p>
         <div className="flex-grow"></div>
-        <div className="flex mt-2">
+        <div className="flex mt-6">
           <div className="flex flex-col">
             <p className="text-xs my-1">
               {ticket.createdAt

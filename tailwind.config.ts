@@ -13,17 +13,34 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
-      colors: {
-        nav: "#18222f",
-        page: "#2b3441",
-        card: "#47566a",
-        "card-hover": "#4f5e74",
-        "default-text": "#f1f3f5",
-        "blue-accent": "#0094d4",
-        "blue-accent-hover": "#009fff",
-      },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: [
+      {
+        light: {
+          "base-100": "#f5f5f4",
+          secondary: "#e7e5e4",
+          accent: "#84cc16",
+          neutral: "#44403c",
+          info: "#d6d3d1",
+          success: "#bef264",
+          warning: "#facc15",
+          error: "#ef4444",
+        },
+        dark: {
+          "base-100": "#1f2937",
+          secondary: "#111827",
+          accent: "#0ea5e9",
+          neutral: "#e5e7eb",
+          info: "#4b5563",
+          success: "#059669",
+          warning: "#f59e0b",
+          error: "#be185d",
+        },
+      },
+    ],
+  },
 };
 export default config;

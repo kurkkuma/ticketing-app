@@ -20,7 +20,7 @@ function DeleteBlock({ id }: { id: string | undefined }) {
   return (
     <FontAwesomeIcon
       icon={faX}
-      className="text-red-400 hover:cursor-pointer hover:text-red-200"
+      className="text-neutral hover:cursor-pointer hover:text-error cursor-pointer transition-colors duration-300 "
       onClick={deleteTicket}
     />
   );

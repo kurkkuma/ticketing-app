@@ -70,9 +70,9 @@ function TicketForm({ ticket }: { ticket: Ticket }) {
   };
 
   return (
-    <div className="flex justify-center mb-72">
+    <div className=" flex justify-center mb-72">
       <form
-        className="flex flex-col gap-3 w-1/2"
+        className="flex flex-col gap-1 w-11/12 md:w-2/3 lg:w-1/2"
         method="post"
         onSubmit={handleSubmit}
       >
@@ -108,8 +108,9 @@ function TicketForm({ ticket }: { ticket: Ticket }) {
         </select>
 
         <label>Priority</label>
-        <div>
+        <div className="flex items-center">
           <input
+            className="radio radio-neutral "
             type="radio"
             id="priority"
             name="priority"
@@ -117,9 +118,10 @@ function TicketForm({ ticket }: { ticket: Ticket }) {
             value={1}
             checked={formData.priority == 1}
           />
-          <label>1</label>
+          <label className="radio-label">1</label>
 
           <input
+            className="radio radio-neutral "
             type="radio"
             id="priority"
             name="priority"
@@ -127,9 +129,10 @@ function TicketForm({ ticket }: { ticket: Ticket }) {
             value={2}
             checked={formData.priority == 2}
           />
-          <label>2</label>
+          <label className="radio-label">2</label>
 
           <input
+            className="radio radio-neutral "
             type="radio"
             id="priority"
             name="priority"
@@ -137,9 +140,10 @@ function TicketForm({ ticket }: { ticket: Ticket }) {
             value={3}
             checked={formData.priority == 3}
           />
-          <label>3</label>
+          <label className="radio-label">3</label>
 
           <input
+            className="radio radio-neutral "
             type="radio"
             id="priority"
             name="priority"
@@ -147,9 +151,10 @@ function TicketForm({ ticket }: { ticket: Ticket }) {
             value={4}
             checked={formData.priority == 4}
           />
-          <label>4</label>
+          <label className="radio-label">4</label>
 
           <input
+            className="radio radio-neutral "
             type="radio"
             id="priority"
             name="priority"
@@ -157,18 +162,19 @@ function TicketForm({ ticket }: { ticket: Ticket }) {
             value={5}
             checked={formData.priority == 5}
           />
-          <label>5</label>
+          <label className="radio-label">5</label>
         </div>
 
         <label>Progress</label>
         <input
           type="range"
-          id="progress"
-          name="progress"
-          value={formData.progress}
           min={0}
           max={100}
+          value={formData.progress}
           onChange={handleChange}
+          id="progress"
+          name="progress"
+          className="range range-xs range-warning"
         />
 
         <label>Status</label>
