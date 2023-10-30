@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Ticket App",
-  description: "Create and remove tickets",
+  description: "Create, update and remove tickets",
 };
 
 export default function RootLayout({
