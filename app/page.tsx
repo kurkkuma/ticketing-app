@@ -4,7 +4,8 @@ import { TicketsResponse, Ticket } from "@/types";
 
 const getTickets = async (): Promise<TicketsResponse | undefined> => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/Tickets`, {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
+    const res = await fetch(`${apiUrl}/api/Tickets`, {
       cache: "no-store",
       headers: {
         "Content-Type": "application/json",
