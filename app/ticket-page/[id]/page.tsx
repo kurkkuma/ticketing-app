@@ -1,6 +1,5 @@
 import TicketForm from "@/app/(components)/TicketForm";
 import React from "react";
-import type { Ticket } from "@/types";
 
 type Props = {
   params: {
@@ -10,9 +9,12 @@ type Props = {
 
 const getTicketById = async (id: string) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/Tickets/${id}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/Tickets/${id}`,
+      {
+        cache: "no-store",
+      }
+    );
     if (!res.ok) {
       throw new Error("Failed to get ticket");
     }

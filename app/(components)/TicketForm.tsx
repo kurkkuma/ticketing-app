@@ -40,25 +40,31 @@ function TicketForm({ ticket }: { ticket: Ticket }) {
     e.preventDefault();
 
     if (EDITMODE) {
-      const res = await fetch(`/api/Tickets/${ticket._id}`, {
-        method: "PUT",
-        body: JSON.stringify({ formData }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/Tickets/${ticket._id}`,
+        {
+          method: "PUT",
+          body: JSON.stringify({ formData }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!res.ok) {
         throw new Error("Failed to update Ticket");
       }
     } else {
-      const res = await fetch("/api/Tickets", {
-        method: "POST",
-        body: JSON.stringify({ formData }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/Tickets`,
+        {
+          method: "POST",
+          body: JSON.stringify({ formData }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!res.ok) {
         throw new Error("Failed to create Ticket");
