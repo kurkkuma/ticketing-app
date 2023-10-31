@@ -1,12 +1,16 @@
 import React from "react";
 import TicketCard from "./(components)/TicketCard";
-import { TicketsResponse } from "@/types";
+import { TicketsResponse, Ticket } from "@/types";
 
 const getTickets = async (): Promise<TicketsResponse | undefined> => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/Tickets`, {
       cache: "no-store",
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
+
     return res.json();
   } catch (error) {
     console.log("Failed to get tickets ", error);
@@ -14,16 +18,17 @@ const getTickets = async (): Promise<TicketsResponse | undefined> => {
 };
 
 const Dashboard = async () => {
-  const { tickets } = (await getTickets()) as TicketsResponse;
+  const req = (await getTickets()) as TicketsResponse | undefined;
+  const tickets: Ticket[] | undefined = req?.tickets;
 
-  const uniqueCategories = Array.from(
-    new Set(tickets?.map(({ category }) => category)) || []
-  );
-  return (
-    <div className="p-5">
-      <div>
-        {tickets &&
-          uniqueCategories?.map((uniqueCategory, index) => (
+  if (tickets) {
+    const uniqueCategories = Array.from(
+      new Set(tickets?.map(({ category }) => category)) || []
+    );
+    return (
+      <div className="p-5">
+        <div>
+          {uniqueCategories?.map((uniqueCategory, index) => (
             <div className="mb-4" key={index}>
               <h2 className="text-center mb-4">{uniqueCategory}</h2>
               <div className="md:grid grid-cols-2 xl:grid-cols-4">
@@ -35,9 +40,12 @@ const Dashboard = async () => {
               </div>
             </div>
           ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    <p className="text-center text-error">Error! Retry, please!</p>;
+  }
 };
 
 export default Dashboard;
